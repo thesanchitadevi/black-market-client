@@ -28,7 +28,7 @@ export default function NavBar() {
                         <div className="flex">
                             
                             <Link to="/">
-                                <h2 className="text-2xl font-bold text-black">Black-Market</h2>
+                                <h2 className="text-2xl font-bold text-gray-900">Black-Market</h2>
                             </Link>
                         </div>
                         <div className="md:hidden">
