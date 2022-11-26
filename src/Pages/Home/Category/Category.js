@@ -25,7 +25,7 @@ const Category = () => {
             <div className='grid lg:grid-cols-3 sm:grid-cols-1 gap-4 my-10 mx-auto w-10/12'>
                 {
                     categories.map(category => <CategoryCard
-                        key={category.id}
+                        key={category._id}
                         category={category}
                     ></CategoryCard>)
                 }

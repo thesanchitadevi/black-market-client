@@ -2,10 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const CategoryCard = ({ category }) => {
-    const { title, img } = category;
+    const { title, img, _id } = category;
     return (
         <div >
-            <Link to={`/categories/id`} className="block">
+            <Link to={`/categories/${_id}`} className="block" category={category}>
                 <img
                     alt="-----"
                     src={img}
