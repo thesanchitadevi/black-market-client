@@ -3,20 +3,84 @@
         "id": 1,
         "service_id": "02",
         "title": "Apple",
-        "img": "https://media.wired.com/photos/5f8dfd6db9910f1848191341/master/w_1600%2Cc_limit/Gear-iPhone-12-Pro-rear-pacific-blue-SOURCE-Apple.jpg"
-        
+        "img": "https://media.wired.com/photos/5f8dfd6db9910f1848191341/master/w_1600%2Cc_limit/Gear-iPhone-12-Pro-rear-pacific-blue-SOURCE-Apple.jpg",
+        "products": [
+            {
+                "product_name": "iPhone 13 pro",
+                "original_price": "1500",
+                "img": "https://www.digitaltrends.com/wp-content/uploads/2021/09/iphone-13-pro-review-dan-baker-40.jpg?p=1",
+                "location": "Dhaka",
+                "resale_price": "1420",
+                "use_years": "6 months",
+                "posted_time": "1 Nov",
+                "seller": "John"
+            },
+            {
+                "product_name": "iPhone 11",
+                "original_price": "1300",
+                "img": "https://i0.wp.com/t.ctcdn.com.br/QY5MIxVX5XFdE0vwhVllQAWuSm8=/1400x788/smart/i505988.jpeg",
+                "location": "Dhaka",
+                "resale_price": "1220",
+                "use_years": "10 months",
+                "posted_time": "10 Nov",
+                "seller": "Sem"
+            }
+        ]
     },
     {
         "id": 2,
         "service_id": "03",
         "title": "Samsung",
-        "img": "https://images.samsung.com/in/smartphones/galaxy-z-flip4/buy/Flip4_Carousel_ProductKV_Graphite_MO.jpg"
+        "img": "https://images.samsung.com/in/smartphones/galaxy-z-flip4/buy/Flip4_Carousel_ProductKV_Graphite_MO.jpg",
+        "products": [
+            {
+                "product_name": "Galaxy Z Fold4",
+                "original_price": "1320",
+                "img": "https://images.samsung.com/bd/smartphones/galaxy-z-fold4/images/galaxy-z-fold4_highlights_kv.jpg",
+                "location": "Dhaka",
+                "resale_price": "1120",
+                "use_years": "5 months",
+                "posted_time": "1 Nov",
+                "seller": "John"
+            },
+            {
+                "product_name": "Samsung s21",
+                "original_price": "800",
+                "img": "https://www.trustedreviews.com/wp-content/uploads/sites/54/2021/01/DSC01626-920x613.jpeg",
+                "location": "Dhaka",
+                "resale_price": "680",
+                "use_years": "6 months",
+                "posted_time": "1 Nov",
+                "seller": "John"
+            }
+        ]
     },
     {
         "id": 3,
         "service_id": "01",
         "title": "Xiaomi",
-        "img": "https://cdn.dxomark.com/wp-content/uploads/medias/post-112371/Xiaomi-12-Pro-featured-image-packshot-review.jpg"
-        
+        "img": "https://cdn.dxomark.com/wp-content/uploads/medias/post-112371/Xiaomi-12-Pro-featured-image-packshot-review.jpg",
+        "products": [
+            {
+                "product_name": "Xiaomi mi 10",
+                "original_price": "500",
+                "img": "https://tipsmake.com/data/images/xiaomi-mi-10-review-is-the-worlds-cheapest-snapdragon-865-smartphone-delicious-picture-8-6yREOXCQX.jpg",
+                "location": "Dhaka",
+                "resale_price": "420",
+                "use_years": "6 months",
+                "posted_time": "1 Nov",
+                "seller": "John"
+            },
+            {
+                "product_name": "Xiaomi 12 pro",
+                "original_price": "300",
+                "img": "https://st1.bgr.in/wp-content/uploads/2022/04/Untitled-design-21.jpg",
+                "location": "Dhaka",
+                "resale_price": "420",
+                "use_years": "6 months",
+                "posted_time": "1 Nov",
+                "seller": "John"
+            }
+        ]
     }
 ]
