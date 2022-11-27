@@ -1,7 +1,33 @@
 import React from 'react';
 
-const BookModal = ({ setOpenModal, productInfo }) => {
-    const { product_name, original_price, img, location, resale_price, use_years, posted_time, seller } = productInfo;
+const BookModal = ({ setOpenModal, productInfo, setProductInfo }) => {
+    const { product_name, resale_price } = productInfo;
+
+    const handleBooking = event => {
+        event.preventDefault();
+
+        const form = event.target;
+        const price = form.price.value;
+        const name = form.name.value;
+        const email = form.email.value;
+        const location = form.location.value;
+        const phone = form.number.value;
+
+        console.log(price, name, email, location, phone);
+        
+        const booking = {
+            productName: product_name,
+            productPrice: price,
+            buyerName: name,
+            buyerEmail: email,
+            location,
+            phone
+        }
+
+        console.log(booking);
+
+        setProductInfo(null);
+    }
     return (
         <>
             <div className="fixed inset-0 z-10 overflow-y-auto">
@@ -21,23 +47,27 @@ const BookModal = ({ setOpenModal, productInfo }) => {
                                     <input onClick={() => setOpenModal(false)} type="button" value="x" className='font-semibold text-2xl border px-1' />
                                 </div>
 
-                                <form  className='mt-5'>
+                                <form onSubmit={handleBooking} className='mt-5'>
                                     <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-city">
                                         Sale Price
                                     </label>
-                                    <p name='date' defaultValue={resale_price} className="appearance-none block w-full bg-gray-200 text-gray-900 font-semibold border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white 
-                                     focus:border-gray-500" id="grid-city" type="text" placeholder="Date" disabled >
-                                        ${resale_price} 
-                                    </p>
+
+                                    <div className='flex'>
+                                        <strong className='text-lg text-gray-700 pt-2 bg-gray-200 pl-2'>$</strong>
+                                        <input name='price' defaultValue={resale_price} className="appearance-none block w-full bg-gray-200 text-gray-900 font-semibold border border-gray-200 rounded py-3 px-4 pl-1 leading-tight focus:outline-none focus:bg-white 
+                                     focus:border-gray-500" id="grid-city" type="text" placeholder="price" disabled />
+                                    </div>
+                                        
+                                    
                                     <br />
                                     <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-first-name">
                                         Name
                                     </label>
-                                    <input name='patientName' className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Name" disabled />
+                                    <input name='name' className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Name"  />
                                     <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-first-name">
                                         Email
                                     </label>
-                                    <input name='email' className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Email" disabled />
+                                    <input name='email' className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Email"  />
 
                                     <br />
 
@@ -51,13 +81,11 @@ const BookModal = ({ setOpenModal, productInfo }) => {
                                         Phone Number
                                     </label>
                                     <div className="relative">
-                                        <input name='number' className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Phone number"  />
+                                        <input name='number' className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="number" placeholder="Phone number"  />
                                     </div>
 
-                                    
-                                    
-
                                     <input className='btn btn-accent w-full bg-gray-700 text-white rounded py-3 mt-3 cursor-pointer' type="submit" value="Submit" />
+                                    
                                 </form>
                             </div>
 

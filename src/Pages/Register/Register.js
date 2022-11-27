@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -15,6 +15,8 @@ const Register = () => {
     const { createUser, updateDisplayName } = useContext(AuthContext);
     const [error, setError] = useState('');
 
+    const navigate = useNavigate();
+
     const handleRegister = data => {
         console.log(data);
         setError('');
@@ -22,7 +24,8 @@ const Register = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                toast('Successfully User Created!');
+                navigate('/');
+                toast.success('Successfully User Created!');
                 updateDisplayName(data.name)
                     .then(() => {
 

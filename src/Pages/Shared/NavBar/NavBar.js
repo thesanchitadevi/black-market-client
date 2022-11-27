@@ -1,21 +1,36 @@
-import {useState } from "react";
+import {useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../../assests/logo.png"
+import { AuthContext } from "../../../Context/AuthProvider/AuthProvider";
 
 export default function NavBar() {
+    const { user, providerSignOut } = useContext(AuthContext);
     const [navbar, setNavbar] = useState(false);
     const [sidebar, setSidebar] = useState(false);
 
+    const handleLogout = event => {
+        providerSignOut()
+            .then(() => { })
+            .catch(error => {
+                console.error(error);
+            })
+    }
     
     const menu = <>
-        
-        
+        {user?.uid ?
+            <button onClick={handleLogout}
+                className="inline-block space-x-5 w-full px-10 text-center text-blue-900 "
+            >
+                Logout
+            </button>
+            :
             <Link
                 to="/login"
                 className="inline-block space-x-5 w-full px-10 text-center text-blue-900 "
             >
                 Login
             </Link>
+        }
         
 
     </>
@@ -85,6 +100,13 @@ export default function NavBar() {
                             <li className="text-blue-900 hover:text-blue-600">
                                 <Link to="/blog">Blog</Link>
                             </li>
+                            {
+                                user?.uid &&
+                                <li className="text-blue-900 hover:text-blue-600">
+                                    <Link to="/dashboard">DashBoard</Link>
+                                </li>
+                                    
+                            }
                             
                         </ul>
 
