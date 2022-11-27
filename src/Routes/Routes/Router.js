@@ -3,7 +3,6 @@ import Main from "../../Layout/Main";
 import Categories from "../../Pages/Categories/Categories";
 import Home from "../../Pages/Home/Home";
 import Blog from '../../Pages/Blog/Blog'
-import Category from "../../Pages/Home/Category/Category"
 import Login from "../../Pages/Login/Login";
 import Register from "../../Pages/Register/Register";
 

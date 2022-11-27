@@ -1,12 +1,50 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import { Select } from '@mui/material';
+
 
 const Register = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
 
+    const { createUser, updateDisplayName } = useContext(AuthContext);
+    const [error, setError] = useState('');
+
+    const handleRegister = data => {
+        console.log(data);
+        setError('');
+        createUser(data.email, data.password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                toast('Successfully User Created!');
+                updateDisplayName(data.name)
+                    .then(() => {
+
+                    })
+                    .catch(error => {
+                        console.error(error)
+                    })
+            })
+            .catch(error => {
+                console.log(error.message);
+                setError(error.message);
+            });
+    }
+
+    const [age, setAge] = React.useState('');
+
+    const handleChange = (event) => {
+        setAge(event.target.value);
+    };
+
     return (
-        <div className="w-full mx-auto max-w-md p-4 rounded-md shadow sm:p-8  text-gray-700">
+        <div className="w-full mx-auto max-w-md p-4 rounded-md shadow sm:p-8  text-gray-700 my-10">
             <h2 className="mb-3 text-3xl font-semibold text-center">Register your account</h2>
             <p className="text-sm text-center text-gray-400">Already have account?
                 <Link to="/login" className="focus:underline hover:underline"> Login here</Link>
@@ -18,15 +56,30 @@ const Register = () => {
                     </svg>
                     <p>Login with Google</p>
                 </button>
-                
+
             </div>
             <div className="flex items-center w-full my-4">
                 <hr className="w-full text-gray-400" />
                 <p className="px-3 text-gray-400">OR</p>
                 <hr className="w-full text-gray-400" />
             </div>
-            <form onSubmit={handleSubmit()} >
+            <form onSubmit={handleSubmit(handleRegister)} >
                 <div className="space-y-4">
+                    <FormControl sx={{ m: 1, minWidth: 300 }} size="small">
+                        <InputLabel id="demo-select-small">Role</InputLabel>
+                        <Select {
+                            ...register("role")
+                                }
+                            labelId="demo-select-small"
+                            id="demo-select-small"
+                            value={age}
+                            label="Role"
+                            onChange={handleChange}
+                        >
+                            <MenuItem value="seller">Seller</MenuItem>
+                            <MenuItem value="buyer">Buyer</MenuItem>
+                        </Select>
+                    </FormControl>
                     <div className="space-y-2">
                         <label htmlFor="name" className="block text-sm">Name</label>
                         <input type="text" name="name" id="name" placeholder="name"
@@ -73,7 +126,7 @@ const Register = () => {
                     </div>
 
                 </div>
-                {/* {error && <p className='text-red-600'>{error}</p>} */}
+                {error && <p className='text-red-600'>{error}</p>}
                 <input className='btn btn-accent w-full px-8 py-3 mt-5 font-semibold rounded-md bg-cyan-400 text-gray-100 cursor-pointer' value="Register" type="submit" />
 
             </form>

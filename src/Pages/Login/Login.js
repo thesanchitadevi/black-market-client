@@ -1,9 +1,29 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 
 const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
+
+    const { signInUser } = useContext(AuthContext);
+    const [error, setError] = useState('');
+
+    const handleLogin = data => {
+        console.log(data);
+        setError('');
+        signInUser(data.email, data.password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                // setLoginUserEmail(data.email)
+            })
+            .catch(error => {
+                console.log(error.message);
+                setError(error.message);
+            });
+    }
+
     return (
         <div className="w-full mx-auto max-w-md p-4 rounded-md shadow sm:p-8  text-gray-700">
             <h2 className="mb-3 text-3xl font-semibold text-center">Login to your account</h2>
@@ -25,7 +45,7 @@ const Login = () => {
                 <p className="px-3 text-gray-400">OR</p>
                 <hr className="w-full text-gray-400" />
             </div>
-            <form onSubmit={handleSubmit()} >
+            <form onSubmit={handleSubmit(handleLogin)} >
                 <div className="space-y-4">
                     <div className="space-y-2">
                         <label htmlFor="email" className="block text-sm">Email address</label>
@@ -53,7 +73,7 @@ const Login = () => {
                             className="w-full px-3 py-2 border rounded-md border-gray-700  text-gray-700 focus:border-cyan-400" />
                         {errors.password && <p className='text-red-600'>{errors.password?.message}</p>}
                     </div>
-                    {/* {error && <p className='text-red-600'>{error}</p>} */}
+                    {error && <p className='text-red-600'>{error}</p>}
                 </div>
                 <input className='btn btn-accent w-full px-8 py-3 mt-5 font-semibold rounded-md bg-cyan-400 text-gray-100 cursor-pointer' value="Login" type="submit" />
 

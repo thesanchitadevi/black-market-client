@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
+import BookModal from './BookModal/BookModal';
 
 const ProductsCard = ({ product }) => {
     const { product_name, original_price, img, location, resale_price, use_years, posted_time, seller } = product;
+
+    const [showModal, setShowModal] = useState(false);
+    const [productInfo, setProductInfo] = useState(null);
+
+
     return (
         <div>
             <div href="#" className="block rounded-lg p-4 shadow-sm shadow-indigo-100">
@@ -17,7 +23,7 @@ const ProductsCard = ({ product }) => {
 
                             <dd className="font-medium text-xl text-center">{product_name}</dd>
                         </div>
-                    <dl className='mt-5'>
+                    <dl className='mt-5 flex justify-between space-x-10'>
                         <div className='flex'>
                             <h1 className='text-md font-medium'>Original Price : </h1>
 
@@ -31,7 +37,7 @@ const ProductsCard = ({ product }) => {
                          <br />
                     </dl>
 
-                    <div className="mt-3 flex items-center gap-8 text-xs">
+                    <div className="mt-5 flex items-center gap-8 text-xs">
                         <div className="sm:inline-flex sm:shrink-0 sm:items-center">
                            
 
@@ -68,9 +74,27 @@ const ProductsCard = ({ product }) => {
                                 <p className="font-medium">{seller}</p>
                             </div>
                         </div>
+                        <div className="sm:inline-flex sm:shrink-0 sm:items-center">
+                            
+                            <div className="mt-1.5 sm:ml-3 sm:mt-0">
+                                <button disabled={product === 'null'}
+                                    className='text-base border border-gray-700 px-2 rounded hover:bg-gray-700 hover:text-white'
+                                    onClick={() => {
+                                    setShowModal(true);
+                                    setProductInfo(product)
+                                    
+                                }}>book now</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+            {showModal && productInfo && <BookModal
+                productInfo={productInfo}
+                setProductInfo={setProductInfo}
+                setOpenModal={setShowModal}
+                
+            />}
 
         </div>
     );
