@@ -24,11 +24,10 @@ const Register = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                navigate('/');
                 toast.success('Successfully User Created!');
                 updateDisplayName(data.name)
-                    .then(() => {
-
+                .then(() => {
+                        navigate('/');
                     })
                     .catch(error => {
                         console.error(error)

@@ -1,16 +1,32 @@
+import { useQuery } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
+import Loading from '../../Shared/Loading/Loading';
 import CategoryCard from './CategoryCard';
 
 const Category = () => {
-    const [categories, setCategories] = useState([]);
+    // const [categories, setCategories] = useState([]);
 
-    useEffect(() => {
-        fetch('http://localhost:5000/categories')
-            .then(res => res.json())
-            .then(data => setCategories(data))
-    }, [])
+    const { data: categories=[] ,isLoading} = useQuery({
+        queryKey: ['categories'],
+        queryFn: async () => {
+            const res = await fetch('http://localhost:5000/categories');
+            const data = await res.json();
+            return data;
+        }
+    })
+
+    if (isLoading) {
+        <Loading></Loading>
+    }
+
+    // useEffect(() => {
+    //     fetch('http://localhost:5000/categories')
+    //         .then(res => res.json())
+    //         .then(data => setCategories(data))
+    // }, [])
+
     return (
-        <div className='my-20'  data-aos="fade-down" >
+        <div className='my-20' data-aos="fade-down" >
             <div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
 
                 <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">

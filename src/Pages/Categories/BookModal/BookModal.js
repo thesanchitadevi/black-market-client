@@ -1,7 +1,13 @@
-import React from 'react';
+import { data } from 'autoprefixer';
+import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
+import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 
 const BookModal = ({ setOpenModal, productInfo, setProductInfo }) => {
     const { product_name, resale_price } = productInfo;
+
+    const { user } = useContext(AuthContext);
+
 
     const handleBooking = event => {
         event.preventDefault();
@@ -14,7 +20,7 @@ const BookModal = ({ setOpenModal, productInfo, setProductInfo }) => {
         const phone = form.number.value;
 
         console.log(price, name, email, location, phone);
-        
+
         const booking = {
             productName: product_name,
             productPrice: price,
@@ -26,7 +32,21 @@ const BookModal = ({ setOpenModal, productInfo, setProductInfo }) => {
 
         console.log(booking);
 
-        setProductInfo(null);
+        fetch('http://localhost:5000/bookings', {
+            method: "POST",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(booking)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.acknowledged) {
+                    setProductInfo(null);
+                    toast.success("Booking Confirm."); 
+                }
+            })
     }
     return (
         <>
@@ -57,35 +77,38 @@ const BookModal = ({ setOpenModal, productInfo, setProductInfo }) => {
                                         <input name='price' defaultValue={resale_price} className="appearance-none block w-full bg-gray-200 text-gray-900 font-semibold border border-gray-200 rounded py-3 px-4 pl-1 leading-tight focus:outline-none focus:bg-white 
                                      focus:border-gray-500" id="grid-city" type="text" placeholder="price" disabled />
                                     </div>
-                                        
-                                    
+
+
                                     <br />
                                     <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-first-name">
                                         Name
                                     </label>
-                                    <input name='name' className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Name"  />
+                                    <input name='name' className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                        defaultValue={user?.displayName} id="grid-first-name" type="text" placeholder="Name" disabled />
                                     <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-first-name">
                                         Email
                                     </label>
-                                    <input name='email' className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Email"  />
+                                    <input name='email' className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                        defaultValue={user?.email}
+                                        id="grid-first-name" type="text" placeholder="Email" disabled />
 
                                     <br />
 
                                     <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-state">
-                                      Meeting Location
+                                        Meeting Location
                                     </label>
                                     <div className="relative">
-                                        <input name='location' className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Location"  />
+                                        <input name='location' className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Location" required/>
                                     </div>
                                     <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-state">
                                         Phone Number
                                     </label>
                                     <div className="relative">
-                                        <input name='number' className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="number" placeholder="Phone number"  />
+                                        <input name='number' className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="number" placeholder="Phone number" required/>
                                     </div>
 
-                                    <input className='btn btn-accent w-full bg-gray-700 text-white rounded py-3 mt-3 cursor-pointer' type="submit" value="Submit" />
-                                    
+                                    <input  className='btn btn-accent w-full bg-gray-700 text-white rounded py-3 mt-3 cursor-pointer' type="submit" value="Submit" />
+
                                 </form>
                             </div>
 
