@@ -15,6 +15,8 @@ const Register = () => {
     const { createUser, updateDisplayName } = useContext(AuthContext);
     const [error, setError] = useState('');
 
+    const [createdUserEmail, setCreatedUserEmail] = useState('');
+
     const navigate = useNavigate();
 
     const handleRegister = data => {
@@ -26,8 +28,8 @@ const Register = () => {
                 console.log(user);
                 toast.success('Successfully User Created!');
                 updateDisplayName(data.name)
-                .then(() => {
-                        navigate('/');
+                    .then(() => {
+                        saveUser(data.name, data.email);
                     })
                     .catch(error => {
                         console.error(error)
@@ -37,6 +39,23 @@ const Register = () => {
                 console.log(error.message);
                 setError(error.message);
             });
+    }
+
+    const saveUser = (name, email) => {
+        const user = { name, email };
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                // 
+                console.log(data);
+                navigate('/');
+            })
     }
 
     const [age, setAge] = React.useState('');
@@ -69,9 +88,10 @@ const Register = () => {
                 <div className="space-y-4">
                     <FormControl sx={{ m: 1, minWidth: 300 }} size="small">
                         <InputLabel id="demo-select-small">Role</InputLabel>
-                        <Select {
+                        <Select name="role"
+                            {
                             ...register("role")
-                                }
+                            }
                             labelId="demo-select-small"
                             id="demo-select-small"
                             value={age}

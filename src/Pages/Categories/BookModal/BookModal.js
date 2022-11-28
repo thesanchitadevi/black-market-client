@@ -24,8 +24,8 @@ const BookModal = ({ setOpenModal, productInfo, setProductInfo }) => {
         const booking = {
             productName: product_name,
             productPrice: price,
-            buyerName: name,
-            buyerEmail: email,
+            name,
+            email,
             location,
             phone
         }
