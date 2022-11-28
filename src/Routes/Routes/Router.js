@@ -9,10 +9,12 @@ import DashBoard from "../../DashBoard/DashBoard";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import DashBoardLayout from "../../Layout/DashBoardLayout";
 import MyOrders from "../../DashBoard/MyOrders/MyOrders";
+import ErrorPage from "../../Pages/Errorpage/ErrorPage";
 
 const router = createBrowserRouter([
     {
         path: '/',
+        errorElement: <ErrorPage></ErrorPage>,
         element: <Main></Main>,
         children: [
             {
