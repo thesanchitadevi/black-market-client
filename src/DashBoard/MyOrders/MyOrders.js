@@ -10,7 +10,11 @@ const MyOrders = () => {
     const { data: bookings = [] } = useQuery({
         queryKey: ['bookings', user?.email],
         queryFn: async () => {
-            const res = await fetch(url);
+            const res = await fetch(url, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            });
             const data = await res.json();
             return data;
         }
@@ -71,7 +75,8 @@ const MyOrders = () => {
                     <tbody class="divide-y divide-gray-200">
 
                         {
-                            bookings.map((book, i) =>
+                            bookings.length && 
+                            bookings?.map((book, i) =>
                                 <tr key={book._id}>
                                     <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                                         {i + 1}

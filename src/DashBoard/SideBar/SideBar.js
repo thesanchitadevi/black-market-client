@@ -30,11 +30,7 @@ const SideBar = () => {
                                         <span>Add Product</span>
                                     </Link>
                                 </li>
-                                <li>
-                                    <Link to='/dashboard/managedoctors' className="flex items-center p-2 space-x-3 rounded-md">
-                                        <span>Manage Doctors</span>
-                                    </Link>
-                                </li>
+                               
                                 <li>
                                     <Link to='/dashboard/allusers' className="flex items-center p-2 space-x-3 rounded-md">
                                         <span>All Users</span>
@@ -42,11 +38,7 @@ const SideBar = () => {
                                 </li>
                             </>
                         
-                        <li>
-                            <Link to='/dashboard' className="flex items-center p-2 space-x-3 rounded-md">
-                                <span>My Appointments</span>
-                            </Link>
-                        </li>
+                        
                     </ul>
                     
                 </div>

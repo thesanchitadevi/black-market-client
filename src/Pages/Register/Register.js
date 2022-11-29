@@ -7,6 +7,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import { Select } from '@mui/material';
+import useToken from '../../Hooks/useToken';
 
 
 const Register = () => {
@@ -16,8 +17,13 @@ const Register = () => {
     const [error, setError] = useState('');
 
     const [createdUserEmail, setCreatedUserEmail] = useState('');
+    const [token] = useToken(createdUserEmail);
 
     const navigate = useNavigate();
+
+    if (token) {
+        navigate('/');
+    }
 
     const handleRegister = data => {
         console.log(data);
@@ -29,7 +35,7 @@ const Register = () => {
                 toast.success('Successfully User Created!');
                 updateDisplayName(data.name)
                     .then(() => {
-                        saveUser(data.name, data.email);
+                        saveUser(data.name, data.email,data.role);
                     })
                     .catch(error => {
                         console.error(error)
@@ -41,8 +47,8 @@ const Register = () => {
             });
     }
 
-    const saveUser = (name, email) => {
-        const user = { name, email };
+    const saveUser = (name, email,role) => {
+        const user = { name, email ,role};
         fetch('http://localhost:5000/users', {
             method: 'POST',
             headers: {
@@ -51,10 +57,9 @@ const Register = () => {
             body: JSON.stringify(user)
         })
             .then(res => res.json())
-            .then(data => {
-                // 
-                console.log(data);
-                navigate('/');
+            .then(data => { 
+                
+                setCreatedUserEmail(email)
             })
     }
 

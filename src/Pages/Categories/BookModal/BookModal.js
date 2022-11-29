@@ -46,6 +46,9 @@ const BookModal = ({ setOpenModal, productInfo, setProductInfo }) => {
                     setProductInfo(null);
                     toast.success("Booking Confirm."); 
                 }
+                else {
+                    toast.error(data.message);
+                }
             })
     }
     return (
