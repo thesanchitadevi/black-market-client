@@ -10,6 +10,8 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import DashBoardLayout from "../../Layout/DashBoardLayout";
 import MyOrders from "../../DashBoard/MyOrders/MyOrders";
 import ErrorPage from "../../Pages/Errorpage/ErrorPage";
+import AllUsers from "../../DashBoard/AllUsers/AllUsers";
+import AllSellers from "../../DashBoard/AllSellers/AllSellers";
 
 const router = createBrowserRouter([
     {
@@ -52,6 +54,14 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/myorders',
                 element: <MyOrders></MyOrders>
+            },
+            {
+                path: '/dashboard/allusers',
+                element: <AllUsers></AllUsers>
+            },
+            {
+                path: '/dashboard/allsellers',
+                element: <AllSellers></AllSellers>
             }
         ]
     }

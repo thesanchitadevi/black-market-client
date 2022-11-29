@@ -1,10 +1,12 @@
+import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 
 const SideBar = () => {
     const { user } = useContext(AuthContext);
-    
+
+
 
     return (
         <div className='lg:block hidden'>
@@ -17,30 +19,32 @@ const SideBar = () => {
                 </div>
                 <div className="divide-y divide-gray-700">
                     <ul className="pt-2 pb-4 space-y-1 text-sm">
+                        
                         <li>
                             <Link to='/dashboard/myorders' className="flex items-center p-2 space-x-3 rounded-md">
-                                
+
                                 <span>My Orders</span>
                             </Link>
                         </li>
-                        <>
-                                <li>
-                                    <Link to='/dashboard/adddoctor' className="flex items-center p-2 space-x-3 rounded-md">
-                                        
-                                        <span>Add Product</span>
-                                    </Link>
-                                </li>
-                               
-                                <li>
-                                    <Link to='/dashboard/allusers' className="flex items-center p-2 space-x-3 rounded-md">
-                                        <span>All Users</span>
-                                    </Link>
-                                </li>
-                            </>
-                        
-                        
+                        <li>
+                            <Link to='/dashboard/adddoctor' className="flex items-center p-2 space-x-3 rounded-md">
+
+                                <span>Add Product</span>
+                            </Link>
+                        </li>
+
+                        <li>
+                            <Link to='/dashboard/allusers' className="flex items-center p-2 space-x-3 rounded-md">
+                                <span>All Users</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to='/dashboard/allsellers' className="flex items-center p-2 space-x-3 rounded-md">
+                                <span>All Sellers</span>
+                            </Link>
+                        </li>
                     </ul>
-                    
+
                 </div>
             </div>
         </div>
