@@ -3,8 +3,8 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
-import Loading from '../../Pages/Shared/Loading/Loading';
-import ConfirmationModal from '../ConfirmationModal/ConfirmationModal';
+import Loading from '../../../Pages/Shared/Loading/Loading';
+import ConfirmationModal from '../../ConfirmationModal/ConfirmationModal';
 
 const AllUsers = () => {
     const [deletingDoctor, setDeletingDoctor] = useState(null);
@@ -33,7 +33,7 @@ const AllUsers = () => {
                 console.log(data);
                 if (data.deletedCount > 0) {
                     refetch();
-                    toast.success(`Doctor ${doctor.name} Deleted successfully.`)
+                    toast.success(` ${user.name} Deleted successfully.`)
                 }
             })
     }
@@ -135,7 +135,7 @@ const AllUsers = () => {
                 showModal && deletingDoctor && <ConfirmationModal
                     setOpenModal={setShowModal}
                     title={`Are you sure you want to delete?`}
-                    message={`Mr./Ms./Mrs. ${deletingDoctor.name} , once you delete information you can not recover them.`}
+                    
                     handleDeleteDoctor={handleDeleteDoctor}
                     modalData={deletingDoctor}
                 ></ConfirmationModal>

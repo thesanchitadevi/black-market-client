@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import toast from 'react-hot-toast';
@@ -14,7 +15,7 @@ const AllSellers = () => {
 
     const handleVerified = id => {
         fetch(`http://localhost:5000/users/${id}`, {
-            method: 'PATCH',
+            method: 'PUT',
             headers: {
                 'content-type': 'application/json'
             },
@@ -57,7 +58,7 @@ const AllSellers = () => {
                                 class="whitespace-nowrap px-4 py-2 text-left font-medium text-gray-900"
                             >
                                 <div class="flex items-center gap-2">
-                                    Admin
+                                    Verification
                                 </div>
                             </th>
                             <th

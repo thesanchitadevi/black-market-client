@@ -20,8 +20,6 @@ const ConfirmationModal = ({ setOpenModal, title, message, modalData, handleDele
                                     <input onClick={() => setOpenModal(false)} type="button" value="x" className='font-semibold text-2xl border px-1' />
                                 </div>
 
-
-                                <h1 className='text-lg py-6'><strong>P.S. :</strong> {message}</h1>
                             </div>
                             <div className='flex'>
                                 <input

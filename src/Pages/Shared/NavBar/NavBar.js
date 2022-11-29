@@ -138,7 +138,7 @@ export default function NavBar() {
                             {
                                 user?.uid &&
                                 <li className="text-blue-900 hover:text-blue-600">
-                                    <Link to="/dashboard">DashBoard</Link>
+                                        <Link to="/dashboard/myorders">DashBoard</Link>
                                 </li>
                                     
                             }

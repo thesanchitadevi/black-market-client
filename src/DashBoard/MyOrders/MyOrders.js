@@ -69,13 +69,18 @@ const MyOrders = () => {
                             >
                                 Location
                             </th>
+                            <th
+                                class="whitespace-nowrap px-4 py-2 text-left font-medium text-gray-900"
+                            >
+                                Pay
+                            </th>
                         </tr>
                     </thead>
 
                     <tbody class="divide-y divide-gray-200">
 
                         {
-                            bookings.length && 
+                            bookings.length &&
                             bookings?.map((book, i) =>
                                 <tr key={book._id}>
                                     <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
