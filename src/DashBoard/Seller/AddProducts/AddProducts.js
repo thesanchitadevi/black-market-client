@@ -8,13 +8,19 @@ const AddProducts = () => {
 
     // let time = new Date().toLocaleString();
     // const [cTime, setTime] = useState(time);
-    let [date, setDate] = useState(new Date())
+    // var [date, setDate] = useState(new Date());
+
+    // useEffect(() => {
+    //     var timer = setInterval(() => setDate(new Date()), 1000)
+    //     return function cleanup() {
+    //         clearInterval(timer)
+    //     }
+
+    // });
+    const [dateState, setDateState] = useState(new Date());
     useEffect(() => {
-        setInterval(() => {
-            // setTime(time);
-            setDate(new Date());
-        }, 1000);
-    });
+        setInterval(() => setDateState(new Date()), 30000);
+    }, []);
 
     const imageHostKey = process.env.REACT_APP_imgbb_key;
 
@@ -152,7 +158,12 @@ const AddProducts = () => {
                         <div className="space-y-2">
                             <label htmlFor="times" className="block text-sm">Posted Time</label>
                             <input
-                                type="time" name="times" id="times" placeholder={date.toDateString()}
+                                type="time" name="times" id="times"
+                                placeholder={dateState.toLocaleDateString('en-GB', {
+                                    day: 'numeric',
+                                    month: 'short',
+                                    year: 'numeric',
+                                })}
                                 {
                                 ...register("times")
                                 }
