@@ -54,7 +54,7 @@ const AddProducts = () => {
                     }
 
                     //save the products information to database
-                    fetch('http://localhost:5000/products', {
+                    fetch('https://black-market-server.vercel.app/products', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',

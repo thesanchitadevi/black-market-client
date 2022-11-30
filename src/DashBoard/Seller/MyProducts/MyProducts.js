@@ -12,7 +12,7 @@ const MyProducts = () => {
         queryKey: ['products'],
         queryFn: async () => {
             try {
-                const res = await fetch('http://localhost:5000/products', {
+                const res = await fetch('https://black-market-server.vercel.app/products', {
                     headers: {
                         authorization: `bearer ${localStorage.getItem('accessToken')}`
                     }
@@ -27,7 +27,7 @@ const MyProducts = () => {
     });
 
     const handleDeleteDoctor = user => {
-        fetch(`http://localhost:5000/products/${user._id}`, {
+        fetch(`https://black-market-server.vercel.app/products/${user._id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
