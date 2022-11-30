@@ -1,10 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
+import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 import Loading from '../../../Pages/Shared/Loading/Loading';
 import ConfirmationModal from '../../ConfirmationModal/ConfirmationModal';
 
 const MyProducts = () => {
+    const { user } = useContext(AuthContext);
+
     const [deletingDoctor, setDeletingDoctor] = useState(null);
     const [showModal, setShowModal] = useState(false);
 
@@ -12,7 +15,7 @@ const MyProducts = () => {
         queryKey: ['products'],
         queryFn: async () => {
             try {
-                const res = await fetch('https://black-market-server.vercel.app/products', {
+                const res = await fetch(`https://black-market-server.vercel.app/products??email=${user?.email}`, {
                     headers: {
                         authorization: `bearer ${localStorage.getItem('accessToken')}`
                     }
