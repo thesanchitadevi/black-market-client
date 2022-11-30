@@ -101,6 +101,13 @@ const MyOrders = () => {
                                     <td class="whitespace-nowrap px-4 py-2">
                                         {book.location}
                                     </td>
+                                    <td class="whitespace-nowrap px-4 py-2">
+                                        <button className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-2 border border-gray-500 rounded"
+                                        >
+                                            Pay Now
+
+                                        </button>
+                                    </td>
                                 </tr>
                             )
                         }

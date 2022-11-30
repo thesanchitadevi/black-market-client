@@ -7,7 +7,8 @@ const ProductsCard = ({ product }) => {
     const [showModal, setShowModal] = useState(false);
     const [productInfo, setProductInfo] = useState(null);
 
-
+    
+    
     return (
         <div>
             <div href="#" className="block rounded-lg p-4 shadow-sm shadow-indigo-100">
@@ -75,9 +76,9 @@ const ProductsCard = ({ product }) => {
                             </div>
                         </div>
                         <div className="sm:inline-flex sm:shrink-0 sm:items-center">
-                            
+                            {}
                             <div className="mt-1.5 sm:ml-3 sm:mt-0">
-                                <button disabled={product === 'null'}
+                                <button 
                                     className='text-base border border-gray-700 px-2 rounded hover:bg-gray-700 hover:text-white'
                                     onClick={() => {
                                     setShowModal(true);
