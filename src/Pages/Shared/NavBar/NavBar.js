@@ -162,7 +162,7 @@ export default function NavBar() {
                             <div className="h-full p-3 space-y-2 w-full bg-gray-100 text-gray-800 ">
                                 <div className="flex items-center p-2 space-x-4 ">
                                     <div>
-                                        <h2 className="text-lg font-semibold">{user.displayName}</h2>
+                                        {/* <h2 className="text-lg font-semibold">{user.displayName}</h2> */}
                                     </div>
                                 </div>
                                 <div className="divide-y divide-gray-700">
