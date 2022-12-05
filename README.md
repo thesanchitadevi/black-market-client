@@ -2,9 +2,9 @@
 
 # Github
 
-Client Side Link : [https://github.com/programming-hero-web-course-4/b612-used-products-resale-clients-side-thesanchitadevi](https://github.com/programming-hero-web-course-4/b612-used-products-resale-clients-side-thesanchitadevi)
+Client Side Link : [hhttps://github.com/thesanchitadevi/black-market-client](https://github.com/thesanchitadevi/black-market-client)
 
-Server Side Link : [https://github.com/programming-hero-web-course-4/b612-used-products-resale-server-side-thesanchitadevi](https://github.com/programming-hero-web-course-4/b612-used-products-resale-server-side-thesanchitadevi)
+Server Side Link : [https://github.com/thesanchitadevi/black-market-server](https://github.com/thesanchitadevi/black-market-server)
 
 Live Link : [Black-Market](https://black-market-ce97c.web.app/)
 
